@@ -1,7 +1,7 @@
 
 from floodsystem.stationdata import build_station_list
 from floodsystem.station import MonitoringStation
-from floodsystem.geo import rivers_with_station
+from floodsystem.geo import rivers_with_station, stations_by_river
 
 data = []
 
@@ -43,3 +43,38 @@ def test_rivers_with_station():
 
     # Check number of rivers
     assert(len(rivers) <= len(stations))
+
+
+def test_stations_by_river():
+
+    # Check function provides the same output for a fixed dataset
+    assert(stations_by_river(data) == {'River Teise': ['Stonebridge'], 'Eden Tributary  Medway': ['Vexour Bridge'],
+                                       'Bagley Dike': ['Grimesthorpe'], 'River Dearne': ['Denby Dale Norman Road'],
+                                       'Carr Brook': ['Sheffield Carr Brook Screen']})
+
+    # Get a list of station objects
+    stations = stations_by_river(build_station_list())
+
+    # Get a list of rivers
+    rivers = rivers_with_station(stations)
+
+    # Check number of river keys
+    assert(len(rivers) == len(stations_by_river(stations).keys()))
+
+    # Get a list of station names
+    names = []
+    for station in stations:
+        names.append(station.name)
+    names.sort()
+
+    # Check number of stations
+    func_names = []
+    for names in stations.values():
+        for name in names:
+            func_names.append(name)
+    func_names.sort()
+
+    assert(func_names == names)
+
+
+test_stations_by_river()

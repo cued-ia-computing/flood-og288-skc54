@@ -21,3 +21,17 @@ def rivers_with_station(stations):
 
     return rivers
 
+
+def stations_by_river(stations):
+    """ Given a list of station objects, this function returns a dictionary,
+    that maps each river with a station on (the keys), to a list of the
+    stations on that river"""
+
+    dict = {}
+
+    for station in stations:
+        if station.river in dict.keys():
+            dict[station.river].append(station.name)
+        else:
+            dict[station.river] = [station.name]
+    return dict
