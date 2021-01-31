@@ -7,7 +7,7 @@ geographical data.
 """
 
 from .utils import sorted_by_key  # noqa
-from haversine import haversine
+from haversine import haversine, Unit
 
 
 def stations_by_distance(stations, p):
@@ -52,3 +52,17 @@ def stations_by_river(stations):
         else:
             dict[station.river] = [station.name]
     return dict
+
+def stations_within_radius(stations, centre, r):
+    '''Returns a list of stations within a specified distance of a coordinate'''
+
+    list_of_stations = [] # Make an empty list
+
+    for station in stations: # Iterate over the stations and add the ones which are within the radius to the list
+        distance = haversine(station.coord, centre, unit=Unit.KILOMETERS)
+        if distance < r:
+            list_of_stations.append(station.name)
+        else:
+            pass
+
+    return list_of_stations
