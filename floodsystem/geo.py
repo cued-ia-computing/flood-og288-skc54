@@ -17,7 +17,7 @@ def stations_by_distance(stations, p):
 
     for station in stations:
         distance = haversine(station.coord, p) # Calculate distance of p from each station
-        distances.append(distance) # Add this distance to the distances list
+        distances.append(distance) # Add this distance to the list of distances
     
     distances = list(zip(stations, distances)) # Create a list of tuples with stations and their distances
  
