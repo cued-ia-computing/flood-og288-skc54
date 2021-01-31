@@ -3,7 +3,7 @@ from floodsystem.stationdata import build_station_list
 
 
 def run():
-    ''''Requirements for task 1B'''
+    '''Requirements for task 1B'''
 
     stations = build_station_list() # Make a list of stations
     p = 52.2053, 0.1218 # Insert coordinates
