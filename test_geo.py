@@ -56,7 +56,7 @@ def test_stations_by_river():
                                        'Carr Brook': ['Sheffield Carr Brook Screen']})
 
     # Get a list of station objects
-    stations = stations_by_river(build_station_list())
+    stations = build_station_list()
 
     # Get a list of rivers
     rivers = rivers_with_station(stations)
@@ -69,18 +69,15 @@ def test_stations_by_river():
     for station in stations:
         names.append(station.name)
     names.sort()
-
     # Check number of stations
     func_names = []
-    for names in stations.values():
-        for name in names:
+    for names1 in stations_by_river(stations).values():
+        for name in names1:
             func_names.append(name)
     func_names.sort()
 
     assert(func_names == names)
 
-
-#test_stations_by_river() #### COMMENTED OUT DUE TO MALFUNCTION ####
 
 def test_stations_by_distance():
 
