@@ -53,6 +53,32 @@ def stations_by_river(stations):
             dict[station.river] = [station.name]
     return dict
 
+
+def rivers_by_station_number(stations, N):
+    """Given a list of station objects, and a value N, this function
+    returns a list of tuples with the N rivers with the largest number
+    of stations. If there is more than one river with the same number
+    of stations as the Nth river, they will be included as well"""
+
+    dict = stations_by_river(stations)
+    lst = []
+    for river in dict.keys():
+        lst.append((river, len(dict[river])))
+
+    new = sorted_by_key(lst, 1, True)
+    n = N
+    if N > len(new):
+        return new
+    while True:
+        try:
+            if new[n - 1][1] != new[n][1]:
+                break
+        except IndentationError:
+            break
+        n += 1
+    return new[:n]
+
+
 def stations_within_radius(stations, centre, r):
     '''Returns a list of stations within a specified distance of a coordinate'''
 

@@ -5,6 +5,7 @@ from floodsystem.geo import rivers_with_station, stations_by_river
 from floodsystem.geo import stations_by_distance
 from haversine import haversine
 from floodsystem.geo import stations_within_radius
+from floodsystem.geo import rivers_by_station_number
 
 data = []
 
@@ -77,6 +78,10 @@ def test_stations_by_river():
     func_names.sort()
 
     assert(func_names == names)
+
+
+def test_rivers_by_station_number():
+    return
 
 
 def test_stations_by_distance():
