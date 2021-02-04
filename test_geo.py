@@ -5,7 +5,6 @@ from floodsystem.geo import rivers_with_station, stations_by_river
 from floodsystem.geo import stations_by_distance
 from haversine import haversine
 from floodsystem.geo import stations_within_radius
-from floodsystem.geo import rivers_by_station_number
 
 data = []
 
@@ -86,32 +85,35 @@ def test_rivers_by_station_number():
 
 def test_stations_by_distance():
 
-    p = 51.132785, 0.453941 # This coordinate is the same as the coordinate of the first station in the list called data.
+    p = 51.132785, 0.453941  # This coordinate is the same as the coordinate
+    # of the first station in the list called data.
 
     assert stations_by_distance(data, p)[0][1] == 0.0
 
-    assert len(stations_by_distance(build_station_list(), p)) == len(build_station_list()) # Check if the function gives values for every station
+    assert len(stations_by_distance(build_station_list(), p)) == len(build_station_list())  # Check if the function
+    # gives values for every station
 
     distance = haversine(data[0].coord, p)
     stations = [data[0]]
-    assert stations_by_distance(stations, p)[0][1] == distance # Test to see if the function gives an accurate value
+    assert stations_by_distance(stations, p)[0][1] == distance  # Test to see if the function gives an accurate value
+
 
 test_stations_by_distance()
+
 
 def test_stations_within_radius():
 
     stations = build_station_list()
-    centre = 51.132785, 0.453941 # This coordinate is the same as the coordinate of the first station in the list called data.
-    r = 0.0000001 # Small radius ensures only one station is given by the function
+    centre = 51.132785, 0.453941  # This coordinate is the same as the coordinate
+    # of the first station in the list called data.
+    r = 0.0000001  # Small radius ensures only one station is given by the function
 
     test_station = []
-    test_station.append(data[0].name) # Make a list consisting of only the name of a station
-    assert stations_within_radius(stations, centre, r) == test_station # Function should give a list which consists of the name of the station
+    test_station.append(data[0].name)  # Make a list consisting of only the name of a station
+    assert stations_within_radius(stations, centre, r) == test_station  # Function should give a list which consists
+    # of the name of the station
     
-    assert len(stations_within_radius(stations, centre, 1000)) == len(build_station_list()) # Test that 
+    assert len(stations_within_radius(stations, centre, 1000)) == len(build_station_list())  # Test that
+
 
 test_stations_within_radius() 
-    
-
-    
-
