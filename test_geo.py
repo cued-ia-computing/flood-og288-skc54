@@ -112,8 +112,8 @@ def test_stations_within_radius():
     test_station.append(data[0].name)  # Make a list consisting of only the name of a station
     assert stations_within_radius(stations, centre, r) == test_station  # Function should give a list which consists
     # of the name of the station
-    
+
     assert len(stations_within_radius(stations, centre, 1000)) == len(build_station_list())  # Test that
 
 
-test_stations_within_radius() 
+test_stations_within_radius()

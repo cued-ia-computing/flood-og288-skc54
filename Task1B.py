@@ -7,7 +7,7 @@ def run():
 
     stations = build_station_list()  # Make a list of stations
     p = 52.2053, 0.1218  # Insert coordinates
-    
+
     station_names = []  # Make empty lists for the station names, towns they are nearest to,
     # and their distances from the coordinates
     towns = []
@@ -17,7 +17,7 @@ def run():
 
     for station in stations_by_distance(stations, p)[:10]:  # Goes through the list created by the stations_by_distance
         # command and takes data to add to the 3 lists created previously
-        
+
         station_names.append(stations_by_distance(stations, p)[x][0].name)
         towns.append(stations_by_distance(stations, p)[x][0].town)
         distances_from_p.append(stations_by_distance(stations, p)[x][1])
@@ -38,7 +38,7 @@ def run():
     furthest_stations = stations_by_distance(stations, p)[-10:]  # Create list of 10 furthest stations
 
     for station in furthest_stations:  # Take data from this list as before to add to the 3 lists.
-        
+
         station_names.append(furthest_stations[y][0].name)
         towns.append(furthest_stations[y][0].town)
         distances_from_p.append(furthest_stations[y][1])
@@ -48,5 +48,5 @@ def run():
     furthest = list(zip(station_names, towns, distances_from_p))  # Create list of tuples for furthest stations
     print(y, "furthest are:", furthest)  # Print furthest stations
 
-        
+
 run()
