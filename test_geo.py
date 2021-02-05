@@ -128,3 +128,13 @@ def test_stations_within_radius():
 
 
 test_stations_within_radius()
+
+
+def test_inconsistent_typical_range_stations():
+    assert(inconsistent_typical_range_stations(data) == ['Stonebridge'])
+    stations = build_station_list()
+    assert(len(inconsistent_typical_range_stations(stations)) < len(stations))
+    return
+
+
+test_inconsistent_typical_range_stations()
