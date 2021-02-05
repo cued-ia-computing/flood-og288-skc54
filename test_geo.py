@@ -6,13 +6,14 @@ from floodsystem.geo import stations_by_distance
 from haversine import haversine
 from floodsystem.geo import stations_within_radius
 from floodsystem.geo import rivers_by_station_number
+from floodsystem.station import inconsistent_typical_range_stations
 
 data = []
 
 data.append(MonitoringStation("http://environment.data.gov.uk/flood-monitoring/id/stations/0503SO",
                               "http://environment.data.gov.uk/flood-monitoring/id/measures/0503SO-level-stage-i-15_min-"
                               "mASD",
-                              "Stonebridge", (51.132785, 0.453941), (0.082, 1.78), "River Teise", "Horsmonden"))
+                              "Stonebridge", (51.132785, 0.453941), (82, 1.78), "River Teise", "Horsmonden"))
 data.append(MonitoringStation("http://environment.data.gov.uk/flood-monitoring/id/stations/0904SO",
                               "http://environment.data.gov.uk/flood-monitoring/id/measures/0904SO-level-stage-i-15_min-"
                               "mASD",
