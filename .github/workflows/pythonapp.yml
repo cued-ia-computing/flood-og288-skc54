@@ -38,7 +38,7 @@ jobs:
           python Task1A.py
           python Task1B.py
           python Task1C.py
-          python Task 1D.py
+          python Task1D.py
           python Task1E.py
           python Task1F.py
 
