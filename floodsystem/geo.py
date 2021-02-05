@@ -73,7 +73,7 @@ def rivers_by_station_number(stations, N):
         try:
             if new[n - 1][1] != new[n][1]:
                 break
-        except IndentationError:
+        except IndexError:
             break
         n += 1
     return new[:n]

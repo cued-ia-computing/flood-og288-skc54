@@ -5,6 +5,7 @@ from floodsystem.geo import rivers_with_station, stations_by_river
 from floodsystem.geo import stations_by_distance
 from haversine import haversine
 from floodsystem.geo import stations_within_radius
+from floodsystem.geo import rivers_by_station_number
 
 data = []
 
@@ -80,7 +81,16 @@ def test_stations_by_river():
 
 
 def test_rivers_by_station_number():
-    return
+    assert(rivers_by_station_number(data, 1) == [('River Teise', 1), ('Eden Tributary  Medway', 1), ('Bagley Dike', 1),
+                                                 ('River Dearne', 1), ('Carr Brook', 1)])
+
+    stations = build_station_list()
+    assert(len(rivers_with_station(stations)) == len(rivers_by_station_number(stations, 2000)))
+    sum = 0
+    lst = rivers_by_station_number(stations, 2000)
+    for i in lst:
+        sum += i[1]
+    assert(len(stations) == sum)
 
 
 def test_stations_by_distance():
