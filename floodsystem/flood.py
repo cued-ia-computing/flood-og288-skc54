@@ -15,3 +15,17 @@ def stations_level_over_threshold(stations, tol):
             if station.relative_water_level() >= tol:
                 lst.append((station, station.relative_water_level()))
     return sorted_by_key(lst, 1, True)
+
+
+def stations_highest_rel_level(stations, N):
+    """This function return a list of the N station objects with the highest relative water level.
+    The list ids sorted in descending order of relative water level"""
+
+    lst = stations_level_over_threshold(stations, -10 ** 9)
+    if N <= 0:
+        return None
+    lst1 = lst[:N]
+    lst2 = []
+    for station_tup in lst1:
+        lst2.append(station_tup[0])
+    return lst2
