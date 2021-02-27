@@ -1,6 +1,7 @@
 """This module contains functions for analysing flood risk"""
 
 from floodsystem.station import MonitoringStation
+from floodsystem.utils import sorted_by_key
 
 
 def stations_level_over_threshold(stations, tol):
@@ -10,6 +11,7 @@ def stations_level_over_threshold(stations, tol):
 
     lst = []
     for station in stations:
-        if (station.relative_water_level != None) and (station.relative_water_level >= tol):
-            lst.append(station, station.relative_water_level)
-    return lst
+        if station.relative_water_level() is not None:
+            if station.relative_water_level() >= tol:
+                lst.append((station, station.relative_water_level()))
+    return sorted_by_key(lst, 1, True)
