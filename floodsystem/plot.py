@@ -1,26 +1,58 @@
 ''' This module contains functions for plotting graphs'''
 
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
-from datafetcher import fetch_measure_levels
+import datetime
+from floodsystem.analysis import polyfit
+import numpy as np
+import matplotlib.dates
+
 
 def plot_water_levels(station, dates, levels):
     '''Displays a plot of the water level data against time for a station'''
 
-    #station_levels = [] # Make an empty list for the station levels over time
-    #times = []
-    #levels = fetch_measure_levels(station.id, dates) 
+    if station.station_id == 'http://environment.data.gov.uk/flood-monitoring/id/stations/2830':
+        print("Error in the station", station.name, "so it has been blacklisted.")
+        raise TypeError
 
-    #for i in levels:
-        #station_levels.append(levels[1][i]) # Fill the station_levels list with the levels of the station over the past
-
-    #for t in levels:
-        #times.append(levels[0][t])
+    else:
+        pass
 
     plt.plot (dates, levels)
+    plt.axhline(station.typical_range[0]) # Horizontal line for typical low end of range
+    plt.axhline(station.typical_range[1]) # Horizontal line for typical high end of range
     plt.xlabel('date')
     plt.ylabel('water level (m)')
     plt.title(station.name)
+    
+
+    plt.tight_layout()
+    
+    plt.show()
+
+def plot_water_level_with_fit(station, dates, levels, p):
+    '''Displays a plot of the water level data and the best fit polynomial'''
+
+    if station.station_id == 'http://environment.data.gov.uk/flood-monitoring/id/stations/2830':
+        print("Error in the station", station.name, "so it has been blacklisted.")
+        raise TypeError
+
+    else:
+        pass
+
+    plt.plot (dates, levels, '.') # Plot of water level data
+    plt.axhline(station.typical_range[0]) # Horizontal line for typical low end of range
+    plt.axhline(station.typical_range[1]) # Horizontal line for typical high end of range
+
+    x = matplotlib.dates.date2num(dates) # the time data is converted to a list fo floats
+    y = levels
+    p_coeff = np.polyfit(x-x[0], y, p) # time data is shifted so it does not go above 1000, which would cause errors to build up
+    poly = np.poly1d(p_coeff)
+    plt.plot(dates, poly(x-x[0])) # Plot of polynomial of best fit
+
+    plt.xlabel('date')
+    plt.ylabel('water level (m)')
+    plt.title(station.name)
+    
 
     plt.tight_layout()
     
