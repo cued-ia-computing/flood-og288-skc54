@@ -130,6 +130,8 @@ def fetch_measure_levels(measure_id, dt):
     # Extract dates and levels
     dates, levels = [], []
     for measure in data['items']:
+        if "value" not in measure:
+            continue
         # Convert date-time string to a datetime object
         d = dateutil.parser.parse(measure['dateTime'])
 
