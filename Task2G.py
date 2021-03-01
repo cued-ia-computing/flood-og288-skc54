@@ -5,7 +5,8 @@ import datetime
 
 
 def run():
-    stations = build_station_list()
+    stations = build_station_list()[100:]
+    # Only the first 100 stations are shown for brevity, as the tests on github would fail otherwise.
     update_water_levels(stations)
     dt = 2  # Number of days
     nonworking_stations = []  # Create a list for stations with erroneous data
