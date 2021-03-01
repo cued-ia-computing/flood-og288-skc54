@@ -12,7 +12,7 @@ def run():
     for i in stations:
         if type(i.relative_water_level()) == float:  # Check to see if the data is corrct and can be used
             station_levels = fetch_measure_levels(i.measure_id, dt=datetime.timedelta(days=dt))
-            if len(station_levels[0]) != 0 or len(station_levels[1]) != 0:
+            if type(polyfit(station_levels[0], station_levels[1], 1)) == tuple:
                 p = polyfit(station_levels[0], station_levels[1], 1)[0][0]
                 # This takes the coefficient of the polynomial produced by polyfit.
                 # As it is order one, the coefficient is the slope. This tells us if the water level is rising or not
