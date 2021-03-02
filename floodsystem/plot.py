@@ -17,7 +17,8 @@ def plot_water_levels(station, dates, levels):
     plt.plot(dates, levels)
     plt.axhline(station.typical_range[0])  # Horizontal line for typical low end of range
     plt.axhline(station.typical_range[1])  # Horizontal line for typical high end of range
-    plt.xlabel('date')
+    plt.xlabel('Date')
+    plt.xticks(rotation=45)
     plt.ylabel('water level (m)')
     plt.title(station.name)
 
@@ -53,7 +54,8 @@ def plot_water_level_with_fit(station, dates, levels, p):
     poly = np.poly1d(p_coeff)
     plt.plot(dates, poly(x - x[0]))  # Plot of polynomial of best fit
 
-    plt.xlabel('date')
+    plt.xlabel('Date')
+    plt.xticks(rotation=45)
     plt.ylabel('water level (m)')
     plt.title(station.name)
 
