@@ -19,22 +19,22 @@ def run():
                 # As it is order one, the coefficient is the slope. This tells us if the water level is rising or not
                 if i.relative_water_level() > 3 and p > 0:
                     # If the relative water level is above 3, the risk is SEVERE
-                    print("Risk is SEVERE at", i.name, "and the water level has been RISING")
+                    print("Risk is SEVERE at", i.town, "and the water level has been RISING")
                 elif i.relative_water_level() > 3 and p < 0:
-                    print("Risk is SEVERE at", i.name, "and the water level is DECREASING")
+                    print("Risk is SEVERE at", i.town, "and the water level is DECREASING")
                 elif i.relative_water_level() > 2 and p > 0:
                     # If the relative water level is above 2, the risk is HIGH
-                    print("Risk is HIGH at", i.name, "and the water level is RISING")
+                    print("Risk is HIGH at", i.town, "and the water level is RISING")
                 elif i.relative_water_level() > 2 and p < 0:
-                    print("Risk is HIGH at", i.name, "and the water level is DECREASING")
+                    print("Risk is HIGH at", i.town, "and the water level is DECREASING")
                 elif i.relative_water_level() > 1 and p > 0:
                     # If the relative water level is above 1, the risk is MODERATE
-                    print("Risk is MODERATE at", i.name, "and the water level is RISING")
+                    print("Risk is MODERATE at", i.town, "and the water level is RISING")
                 elif i.relative_water_level() > 1 and p < 0:
-                    print("Risk is MODERATE at", i.name, "and the water level is DECREASING")
+                    print("Risk is MODERATE at", i.town, "and the water level is DECREASING")
                 else:
                     # If the relative water level is under 1, the risk is LOW
-                    print("Risk is LOW at", i.name)
+                    print("Risk is LOW at", i.town)
             else:
                 nonworking_stations.append(i.name)
         else:
